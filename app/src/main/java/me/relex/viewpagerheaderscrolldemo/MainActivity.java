@@ -8,7 +8,6 @@ import android.support.v4.util.SparseArrayCompat;
 import android.support.v4.view.ViewCompat;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.ActionBarActivity;
-import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewConfiguration;
@@ -128,9 +127,6 @@ public class MainActivity extends ActionBarActivity
 
         long defaultDuration = DEFAULT_DURATION;
 
-        Log.e("headerMoveDuration", "currentHeaderY = " + currentHeaderY +
-                "; isFling = " + isFling + ", velocityY = " + velocityY);
-
         if (isFling) {
 
             float distance = isExpand ? Math.abs(mHeaderHeight) - Math.abs(currentHeaderY)
@@ -141,8 +137,6 @@ public class MainActivity extends ActionBarActivity
 
             defaultDuration =
                     defaultDuration > DEFAULT_DURATION ? DEFAULT_DURATION : defaultDuration;
-
-            Log.e("headerMoveDuration", "finalDuration = " + defaultDuration);
         }
 
         return defaultDuration;
