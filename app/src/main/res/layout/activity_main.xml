@@ -1,0 +1,35 @@
+<me.relex.viewpagerheaderscrolldemo.widget.TouchCallbackLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@id/layout"
+
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <android.support.v4.view.ViewPager
+        android:layout_marginTop="@dimen/tabs_height"
+        android:id="@id/viewpager"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"/>
+
+    <LinearLayout
+        android:id="@id/header"
+        android:background="@color/colorPrimary"
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:padding="@dimen/space_middle"
+            android:textColor="@android:color/white"
+            android:text="@string/header_text"
+            android:textStyle="bold"
+            android:textSize="22sp"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/viewpager_header_height"/>
+
+        <me.relex.viewpagerheaderscrolldemo.widget.SlidingTabLayout
+            android:id="@id/tabs"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/tabs_height"/>
+    </LinearLayout>
+
+</me.relex.viewpagerheaderscrolldemo.widget.TouchCallbackLayout>

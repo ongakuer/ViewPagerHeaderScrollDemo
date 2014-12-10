@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="countries">
+        <item>Russia</item>
+        <item>Canada</item>
+        <item>China</item>
+        <item>United States</item>
+        <item>Brazil</item>
+        <item>Australia</item>
+        <item>India</item>
+        <item>Argentina</item>
+        <item>Kazakhstan</item>
+        <item>Algeria</item>
+        <item>Democratic Republic of the Congo</item>
+        <item>Greenland</item>
+        <item>Saudi Arabia</item>
+        <item>Mexico</item>
+        <item>Indonesia</item>
+        <item>Sudan</item>
+        <item>Libya</item>
+        <item>Iran</item>
+        <item>Mongolia</item>
+        <item>Peru</item>
+        <item>Chad</item>
+        <item>Niger</item>
+        <item>Angola</item>
+        <item>Mali</item>
+        <item>South Africa</item>
+        <item>Colombia</item>
+        <item>Ethiopia</item>
+        <item>Bolivia</item>
+        <item>Mauritania</item>
+        <item>Egypt</item>
+    </string-array>
+
+    <string-array name="continents">
+        <item>Africa</item>
+        <item>Europe</item>
+        <item>Asia</item>
+        <item>North America</item>
+        <item>South America</item>
+        <item>Antarctica</item>
+        <item>Australia</item>
+    </string-array>
+
+
+    <string-array name="cities">
+    </string-array>
+
+
+</resources>

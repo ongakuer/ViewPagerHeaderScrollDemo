@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">ViewpagerHeaderScrollDemo</string>
+    <string name="header_text">ViewpagerHeader\nLorem ipsum dolor sit amet, consectetur adipiscing elit</string>
+    <string name="empty_text">Empty</string>
+    <string name="tab_country">Country</string>
+    <string name="tab_continent">Continent</string>
+    <string name="tab_city">City</string>
+
+
+</resources>
