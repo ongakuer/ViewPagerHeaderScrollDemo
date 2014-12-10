@@ -83,12 +83,12 @@ public class MainActivity extends ActionBarActivity
     }
 
     @Override public void onMove(float y, float yDx) {
-        float headerTranslationY = ViewCompat.getTranslationY(mHeaderLayoutView) + yDx; // 0到负数
-        if (headerTranslationY >= 0) { // 向下拖动到头了
+        float headerTranslationY = ViewCompat.getTranslationY(mHeaderLayoutView) + yDx;
+        if (headerTranslationY >= 0) { // pull end
             headerExpand(0L);
-        } else if (headerTranslationY <= -mHeaderHeight) { // 向上推动要超过toolbar高度了
+        } else if (headerTranslationY <= -mHeaderHeight) { // push end
             headerFold(0L);
-        } else { //其余随便拖动
+        } else {
             ViewCompat.animate(mHeaderLayoutView)
                     .translationY(headerTranslationY)
                     .setDuration(0)
