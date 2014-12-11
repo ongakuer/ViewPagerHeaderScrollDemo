@@ -22,7 +22,7 @@ public class ViewPagerHeaderHelper {
 
     private OnViewPagerTouchListener mListener;
 
-    //private int mTouchSlop;
+    private int mTouchSlop;
     private int mMinimumFlingVelocity;
     private int mMaximumFlingVelocity;
 
@@ -31,7 +31,7 @@ public class ViewPagerHeaderHelper {
 
     public ViewPagerHeaderHelper(Context context, OnViewPagerTouchListener listener) {
         ViewConfiguration viewConfiguration = ViewConfiguration.get(context);
-        //mTouchSlop = viewConfiguration.getScaledTouchSlop();
+        mTouchSlop = viewConfiguration.getScaledTouchSlop();
         mMinimumFlingVelocity = viewConfiguration.getScaledMinimumFlingVelocity();
         mMaximumFlingVelocity = viewConfiguration.getScaledMaximumFlingVelocity();
 
@@ -63,7 +63,7 @@ public class ViewPagerHeaderHelper {
                 if (mInitialMotionY > 0f && !mIsBeingMove) {
                     final float yDiff = y - mInitialMotionY;
                     final float xDiff = x - mInitialMotionX;
-                    if ((!mIsHeaderExpand && yDiff > 0)  // header fold , pull
+                    if ((!mIsHeaderExpand && yDiff > mTouchSlop)  // header fold , pull
                             || (mIsHeaderExpand && yDiff < 0))// header expand, push
                     {
                         if (Math.abs(yDiff) > Math.abs(xDiff)) {
