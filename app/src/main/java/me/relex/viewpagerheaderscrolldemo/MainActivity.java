@@ -13,21 +13,25 @@ import android.view.View;
 import android.view.ViewConfiguration;
 import android.view.animation.DecelerateInterpolator;
 import android.view.animation.Interpolator;
+import me.relex.viewpagerheaderscrolldemo.fragment.ListViewFragment;
+import me.relex.viewpagerheaderscrolldemo.fragment.ScrollViewFragment;
+import me.relex.viewpagerheaderscrolldemo.tools.ScrollableFragmentListener;
+import me.relex.viewpagerheaderscrolldemo.tools.ScrollableListener;
 import me.relex.viewpagerheaderscrolldemo.tools.ViewPagerHeaderHelper;
 import me.relex.viewpagerheaderscrolldemo.widget.SlidingTabLayout;
 import me.relex.viewpagerheaderscrolldemo.widget.TouchCallbackLayout;
 
 public class MainActivity extends ActionBarActivity
-        implements TouchCallbackLayout.TouchEventListener,
-        ItemFragment.OnFragmentInteractionListener, ViewPagerHeaderHelper.OnViewPagerTouchListener {
+        implements TouchCallbackLayout.TouchEventListener, ScrollableFragmentListener,
+        ViewPagerHeaderHelper.OnViewPagerTouchListener {
 
     private static final long DEFAULT_DURATION = 300L;
     private static final float DEFAULT_DAMPING = 1.5f;
 
-    private SparseArrayCompat<ItemFragment> mFragmentArrays = new SparseArrayCompat<ItemFragment>();
+    private SparseArrayCompat<ScrollableListener> mScrollableListenerArrays =
+            new SparseArrayCompat<>();
     private ViewPager mViewPager;
     private View mHeaderLayoutView;
-
     private ViewPagerHeaderHelper mViewPagerHeaderHelper;
 
     private int mTouchSlop;
@@ -53,7 +57,7 @@ public class MainActivity extends ActionBarActivity
         mHeaderLayoutView = findViewById(R.id.header);
 
         SlidingTabLayout slidingTabLayout = (SlidingTabLayout) findViewById(R.id.tabs);
-        slidingTabLayout.setDistributeEvenly(true);
+        //slidingTabLayout.setDistributeEvenly(true);
 
         mViewPager = (ViewPager) findViewById(R.id.viewpager);
         mViewPager.setAdapter(new ViewPagerAdapter(getSupportFragmentManager()));
@@ -74,7 +78,8 @@ public class MainActivity extends ActionBarActivity
     }
 
     @Override public boolean isViewBeingDragged(MotionEvent event) {
-        return mFragmentArrays.valueAt(mViewPager.getCurrentItem()).isViewBeingDragged(event);
+        return mScrollableListenerArrays.valueAt(mViewPager.getCurrentItem())
+                .isViewBeingDragged(event);
     }
 
     @Override public void onMoveStarted(float y) {
@@ -170,12 +175,12 @@ public class MainActivity extends ActionBarActivity
         mViewPagerHeaderHelper.setHeaderExpand(true);
     }
 
-    @Override public void onFragmentAttached(ItemFragment fragment, int position) {
-        mFragmentArrays.put(position, fragment);
+    @Override public void onFragmentAttached(ScrollableListener listener, int position) {
+        mScrollableListenerArrays.put(position, listener);
     }
 
-    @Override public void onFragmentDetached(ItemFragment fragment, int position) {
-        mFragmentArrays.remove(position);
+    @Override public void onFragmentDetached(ScrollableListener listener, int position) {
+        mScrollableListenerArrays.remove(position);
     }
 
     private class ViewPagerAdapter extends FragmentPagerAdapter {
@@ -186,12 +191,16 @@ public class MainActivity extends ActionBarActivity
 
         @Override
         public Fragment getItem(int position) {
-            return ItemFragment.newInstance(position);
+
+            if (position == 3) {
+                return ScrollViewFragment.newInstance(position);
+            }
+            return ListViewFragment.newInstance(position);
         }
 
         @Override
         public int getCount() {
-            return 3;
+            return 4;
         }
 
         @Override
@@ -203,6 +212,8 @@ public class MainActivity extends ActionBarActivity
                     return getString(R.string.tab_continent);
                 case 2:
                     return getString(R.string.tab_city);
+                case 3:
+                    return getString(R.string.tab_scroll_view);
             }
 
             return "";
